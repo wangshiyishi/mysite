@@ -9,5 +9,20 @@
 <h1>{{blog.title}}</h1>
 <p>{{blog.ccontent}}</p>
     </center>
+<form action="{% url 'home' %}" method="post" accept-charset="utf-8">
+<input name="comment" type="username" id="comment"></input>
+<button type="submit">确认</button>
+</form>
+<hr>
+
+
+{%for comment in comments%}
+{{comment.Comment}}
+<button ><a href="/delete_comment/{{comment.id}}/">删除</a></button>
+<form action="/update_comment/{{comment.id}}/" method="post" accept-charset="utf-8">
+<input name="comment" type="username" id="comments"></input>
+<button type="submit">更新</button>
+</form>
+
 </body>
 </html>

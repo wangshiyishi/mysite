@@ -14,4 +14,7 @@ urlpatterns = patterns('',
     url(r'^acc_regist$','blog.views.acc_regist',name="acc_regist"),
     url(r'^acc_login$','blog.views.acc_login',name="acc_login"),
     url(r'^logout$','blog.views.logout',name="logout"),
+    url(r'^sub_comment/$', views.sub_comment, name='blog'),
+    url(r'^delete_comment/(\d+)/$', views.delete_comment),
+    url(r'^update_comment/(\d+)/$', views.update_comment),
 )
