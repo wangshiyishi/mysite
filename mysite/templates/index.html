@@ -82,10 +82,10 @@
       <div class="jumbotron">
         <h1>{{blog.title}}</h1>
 
-        <p>{{blog.ccontent}}</p>
+        <p>{{ blog.ccontent|truncatechars:450 }}</p>
 
         <p>
-          <a class="btn btn-lg btn-primary" href="/blog/{{blog.id}}" role="button">View navbar docs &raquo;</a>
+          <a class="btn btn-lg btn-primary" href="/blog/{{blog.id}}" role="button">点击进入正文&raquo;</a>
         </p>
       </div>
 
