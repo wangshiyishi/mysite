@@ -50,23 +50,36 @@ def logout(req):
     return response
 
 def blog(request):
-    comments = Comment.objects.all()
+    blog = Blog.objects.get(id=blog_id)
+    username = request.COOKIES.get('username', "")
+    user = User.objects.get(username=usernae)
+    comments = Comment.objects.all(comments=comment, author=user, blog=blog)
     return render(request,
                   'blog.html',
                   {'comments': comments})
 
-def sub_comment(request):
-	comment = request.POST.get('comments')
-	Comment.objects.create(Comment=comment)
-	return HttpResponseRedirect('/')
+
+def sub_comment(request, blog_id):
+    blog = Blog.objects.get(id=blog_id)
+    username = request.COOKIES.get('username', "")
+    user = User.objects.get(username=usernae)
+    comment = request.POST.get('comments')
+    Comments.objects.create(comments=comment, author=user, blog=blog)
+    return HttpResponseRedirect('/')
 
 def delete_comment(request, comment_id):
-	Comment.objects.get(id=comment_id).delete()
-	return HttpResponse('/')
+    blog = Blog.objects.get(id=blog_id)
+    username = request.COOKIES.get('username', "")
+    user = User.objects.get(username=usernae)
+    Comments.objects.get(id=comment_id).delete(comments=comment, author=user, blog=blog)
+    return HttpResponse('/')
 
 def update_comment(request, comment_id):
-	comment = request.POST.get('comments')
-	Comment.objects.filter(id=comment_id).update(Comment=comment)
+    blog = Blog.objects.get(id=blog_id)
+    username = request.COOKIES.get('username', "")
+    user = User.objects.get(username=usernae)
+    comment = request.POST.get('comments')
+    Comments.objects.filter(id=comment_id).update(comments=comment, author=user, blog=blog)
 
 
 
